@@ -65,11 +65,18 @@ export default {
             }
         },
         save() {
-            let file_id = uuidv4();
+            let files = [];
+            let toServer = ["update_task", {id: this.id, name: this.new_name}]
+            if (this.new_audio) {
+                let file_id = uuidv4();
+                toServer[1].files = {audio: file_id};
+                files.push({file: this.new_audio, id: file_id})
+            }
+
             this.$refs.shell.query({
                 confirm: "Сохранить изменения?",
-                files: [{file: this.new_audio, id: file_id}],
-                toServer: ["update_task", {id: this.id, name: this.new_name, files: {audio: file_id}}],
+                files,
+                toServer,
                 waiting: "Сохранение изменений",
                 accepted: () => {
                     this.store.load(["get_teacher_task", {id: this.id}]);

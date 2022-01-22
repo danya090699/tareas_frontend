@@ -101,7 +101,7 @@ export default {
                 toServer[1].files = {picture: file_id};
                 files.push({file: this.new_picture, id: file_id})
             }
-            let file_id = uuidv4();
+
             this.$refs.shell.query({
                 confirm: "Сохранить изменения?",
                 files,
