@@ -25,7 +25,8 @@
                 </center>
             </template>
             <center v-else>
-                <h2 class="ma-4">{{ points[Math.floor(currentTime / 20)] }}</h2>
+                <h2 class="ma-4">{{ points[questionNumber] }}</h2>
+                <v-btn v-if="currentTime > 2" @click="toNextQuestion">дальше</v-btn>
             </center>
         </template>
         <center v-else-if="state == 'countdown'">
@@ -57,9 +58,10 @@ export default {
         text: null,
         points: null,
         file: null,
-        duration: 0,
-        currentTime: 0,
-        timeBeforeStart: 0,
+        duration: null,
+        currentTime: null,
+        timeBeforeStart: null,
+        questionNumber: null,
         templates,
     }),
     computed: {
@@ -104,10 +106,6 @@ export default {
                 if (this.timeBeforeStart == 0) {
                     clearInterval(timer);
 
-                    this.state = "recording";
-                    this.currentTime = 0;
-                    this.duration = 80;
-
                     this.mediaRecorder = new MediaRecorder(this.stream);
                     this.mediaRecorder.addEventListener("dataavailable", event => {
                         let blob = new Blob([event.data], {type: 'audio/wav'});
@@ -115,20 +113,35 @@ export default {
                         this.state = "done";
                     })
                     this.mediaRecorder.start();
-
-                    let start = new Date();
-                    let timer = setInterval(() => {
-                        this.currentTime = (new Date() - start) / 1000;
-                    }, 100);
-
-                    setTimeout(() => {
-                        clearInterval(timer);
-                        if (this.state == "recording") {
-                            this.mediaRecorder.stop();
-                        }
-                    }, this.duration * 1000);
+                    this.questionNumber = -1
+                    this.toNextQuestion()
                 }
             }, 1000);
+        },
+        toNextQuestion() {
+            this.state = "recording";
+            this.questionNumber += 1;
+            let currentNumber = this.questionNumber;
+            this.currentTime = 0;
+            this.duration = 20;
+
+            if (this.questionNumber < 4) {
+                let start = new Date();
+                let timer = setInterval(() => {
+                    if (this.questionNumber == currentNumber) {
+                        this.currentTime = (new Date() - start) / 1000;
+                    }
+                }, 100);
+                setTimeout(() => {
+                    clearInterval(timer);
+                    if (this.questionNumber == currentNumber) {
+                        this.toNextQuestion();
+                    }
+                }, this.duration * 1000);
+            }
+            else {
+                this.mediaRecorder.stop();
+            }
         },
         save() {
             let file_id = uuidv4();

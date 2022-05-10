@@ -1,6 +1,10 @@
 <template>
     <Shell :data="[student_task, teacher_task]" class="px-4">
         <template v-slot:default>
+            <CheckedButton v-if="student_id !== undefined"
+                       :task_id="task_id"
+                       :student_id="student_id"
+                       :checked="student_task.checked"/>
             <center class="ma-4">
                 <audio :src="student_task.files.audio" controls/>
                 <h2>{{ teacher_task.other_info.header }}</h2>
@@ -16,9 +20,11 @@
 
 <script>
 import templates from "./templates.js";
+import CheckedButton from "../../CheckedButton";
 
 export default {
     props: ["task_id", "student_id"],
+    components: { CheckedButton },
     data: () => ({
         templates
     }),

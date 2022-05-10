@@ -54,7 +54,7 @@ export default {
             })
         },
         show_student(id) {
-            this.addScreen({type: "StudentTasks", info: {student_id: id}});
+            this.addScreen({type: "StudentTasksForTeacher", info: {student_id: id}});
         }
     }
 }

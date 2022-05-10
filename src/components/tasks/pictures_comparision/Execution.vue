@@ -33,8 +33,9 @@
                 </div>
             </div>
 
-            <center v-if="state == 'recording'" class="mt-2">
-                <v-btn @click="mediaRecorder.stop()">остановить запись</v-btn>
+            <center class="mt-2">
+                <v-btn v-if="state == 'recording'" @click="mediaRecorder.stop()">остановить запись</v-btn>
+                <v-btn v-else @click="record">начать запись</v-btn>
             </center>
         </template>
         <center v-else-if="state == 'countdown'">
@@ -94,11 +95,15 @@ export default {
 
                 let start = new Date();
                 let timer = setInterval(() => {
-                    this.currentTime = (new Date() - start) / 1000;
+                    if (this.state == "reading") {
+                        this.currentTime = (new Date() - start) / 1000;
+                    }
                 }, 100);
                 setTimeout(() => {
                     clearInterval(timer);
-                    this.record();
+                    if (this.state == "reading") {
+                        this.record();
+                    }
                 }, this.duration * 1000);
             })
             .catch(err => console.log(err))

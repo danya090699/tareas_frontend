@@ -27,30 +27,15 @@
                                     </v-tabs>
                                     <v-tabs-items v-model="tab">
                                         <v-tab-item key="tasks">
-                                            <TeacherTasks user_type="teacher"/>
+                                            <AllTasksForTeacher/>
                                         </v-tab-item>
                                         <v-tab-item key="students">
-                                            <Students :is_admin="user_info.is_admin"/>
+                                            <StudentsForTeacher :is_admin="user_info.is_admin"/>
                                         </v-tab-item>
                                     </v-tabs-items>
 
                                 </template>
-                                <template v-else>
-
-                                    <v-tabs v-model="tab" background-color="transparent" color="blue" grow>
-                                        <v-tab key="tasks">Задания</v-tab>
-                                        <v-tab key="done">Выполненные</v-tab>
-                                    </v-tabs>
-                                    <v-tabs-items v-model="tab">
-                                        <v-tab-item key="tasks">
-                                            <TeacherTasks user_type="student"/>
-                                        </v-tab-item>
-                                        <v-tab-item key="done">
-                                            <StudentTasks/>
-                                        </v-tab-item>
-                                    </v-tabs-items>
-
-                                </template>
+                                <TasksForStudent v-else/>
                             </div>
 
                             <component
@@ -72,9 +57,11 @@
 <script>
 import {AuthReg as Authorization} from 'dmfApplLib'
 
-import TeacherTasks from "./components/TeacherTasks";
-import StudentTasks from "./components/StudentTasks";
-import Students from "./components/Students";
+import TasksForStudent from "./components/students/Tasks";
+
+import AllTasksForTeacher from "./components/teachers/AllTasks";
+import StudentsForTeacher from "./components/teachers/Students";
+import StudentTasksForTeacher from "./components/teachers/StudentTasks";
 
 import InterviewTask from "./components/tasks/interview/Task";
 import InterviewExecution from "./components/tasks/interview/Execution";
@@ -95,7 +82,8 @@ import PicturesComparisionResult from "./components/tasks/pictures_comparision/R
 export default {
     components: {
         Authorization,
-        TeacherTasks, StudentTasks, Students,
+        TasksForStudent,
+        AllTasksForTeacher, StudentsForTeacher, StudentTasksForTeacher,
         InterviewTask, InterviewExecution, InterviewResult,
         TextReadingTask, TextReadingExecution, TextReadingResult,
         QuestionsTask, QuestionsExecution, QuestionsResult,

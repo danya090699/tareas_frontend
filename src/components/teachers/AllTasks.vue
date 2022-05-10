@@ -11,21 +11,18 @@
                             <v-simple-table>
                                 <tbody>
                                 <tr v-for="task in tasks[task_type.id]">
-                                    <template v-if="user_type == 'teacher'">
-                                        <td @click="edit_task(task_type.key, task.id)">{{ task.name }}</td>
-                                        <td style="text-align: right">
-                                            <v-btn @click="delete_task(task_type.id, task.id, task.name, task.solved_count)" icon large color="red">
-                                                <v-icon>mdi-close</v-icon>
-                                            </v-btn>
-                                        </td>
-                                    </template>
-                                    <td v-else @click="complete_task(task_type.key, task.id)">{{ task.name }}</td>
+                                    <td @click="edit_task(task_type.key, task.id)">{{ task.name }}</td>
+                                    <td style="text-align: right">
+                                        <v-btn @click="delete_task(task_type.id, task.id, task.name, task.solved_count)" icon large color="red">
+                                            <v-icon>mdi-close</v-icon>
+                                        </v-btn>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </v-simple-table>
                         </Shell>
 
-                        <center v-if="user_type == 'teacher'" class="mt-2">
+                        <center class="mt-2">
                             <v-btn @click="new_task(task_type.key, task_type.id, task_type.name)">новое задание</v-btn>
                         </center>
                     </v-expansion-panel-content>
@@ -38,7 +35,6 @@
 <script>
 export default {
     inject: ["addScreen"],
-    props: ["user_type"],
     computed: {
         task_types() {
             return this.store.get(["get_task_types", {}])
@@ -63,9 +59,6 @@ export default {
         },
         edit_task(key, id) {
             this.addScreen({type: key + "Task", info: {id}});
-        },
-        complete_task(key, id) {
-            this.addScreen({type: key + "Execution", info: {id}});
         },
         delete_task(type_id, id, name, solved_count) {
             this.$refs[type_id][0].query({
