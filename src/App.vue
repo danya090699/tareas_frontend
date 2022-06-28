@@ -2,6 +2,8 @@
     <div ref="window" v-resize="windowResize" style="height: 100%; overflow: hidden">
         <v-app style="background-color: transparent">
             <div :style="{height: windowHeight+'px'}">
+
+    
                 <Authorization v-if="!store.authorized" v-model="store.authorized"
                                :url="config.url" :service="services.auth" :nameappl="config.name"
                 />
@@ -109,7 +111,7 @@ export default {
             this.windowHeight = this.$refs.window.offsetHeight
         },
         logout() {
-            this.store.request([this.services.auth, "logout", {}])
+            this.store.request(['gateway', "logout", {}])
                 .then(res => {
                     if (res) {
                         this.store.authorized = false
