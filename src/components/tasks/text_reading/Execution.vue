@@ -82,10 +82,10 @@ export default {
             this.state = "countdown";
             this.timeBeforeStart = 5;
 
-            let timer = setInterval(() => {
+            let countdownTimer = setInterval(() => {
                 this.timeBeforeStart--;
                 if (this.timeBeforeStart == 0) {
-                    clearInterval(timer);
+                    clearInterval(countdownTimer);
 
                     this.state = "recording";
                     this.currentTime = 0;
@@ -100,12 +100,12 @@ export default {
                     this.mediaRecorder.start();
 
                     let start = new Date();
-                    let timer = setInterval(() => {
+                    let taskTimer = setInterval(() => {
                         this.currentTime = (new Date() - start) / 1000;
                     }, 100);
 
                     setTimeout(() => {
-                        clearInterval(timer);
+                        clearInterval(taskTimer);
                         if (this.state == "recording") {
                             this.mediaRecorder.stop();
                         }
