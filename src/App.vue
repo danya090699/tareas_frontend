@@ -81,6 +81,10 @@ import PicturesComparisionTask from "./components/tasks/pictures_comparision/Tas
 import PicturesComparisionExecution from "./components/tasks/pictures_comparision/Execution";
 import PicturesComparisionResult from "./components/tasks/pictures_comparision/Result";
 
+import Monologue9GradeTask from "./components/tasks/monologue_9_grade/Task";
+import Monologue9GradeExecution from "./components/tasks/monologue_9_grade/Execution";
+import Monologue9GradeResult from "./components/tasks/monologue_9_grade/Result";
+
 export default {
     components: {
         Authorization,
@@ -90,6 +94,7 @@ export default {
         TextReadingTask, TextReadingExecution, TextReadingResult,
         QuestionsTask, QuestionsExecution, QuestionsResult,
         PicturesComparisionTask, PicturesComparisionExecution, PicturesComparisionResult,
+        Monologue9GradeTask, Monologue9GradeExecution, Monologue9GradeResult,
     },
     provide() {
         return {
