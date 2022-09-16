@@ -65,13 +65,21 @@ import AllTasksForTeacher from "./components/teachers/AllTasks";
 import StudentsForTeacher from "./components/teachers/Students";
 import StudentTasksForTeacher from "./components/teachers/StudentTasks";
 
-import InterviewTask from "./components/tasks/interview/Task";
-import InterviewExecution from "./components/tasks/interview/Execution";
-import InterviewResult from "./components/tasks/interview/Result";
+import Interview9GradeTask from "./components/tasks/interview_9_grade/Task";
+import Interview9GradeExecution from "./components/tasks/interview_9_grade/Execution";
+import Interview9GradeResult from "./components/tasks/interview_9_grade/Result";
 
-import TextReadingTask from "./components/tasks/text_reading/Task";
-import TextReadingExecution from "./components/tasks/text_reading/Execution";
-import TextReadingResult from "./components/tasks/text_reading/Result";
+import Interview11GradeTask from "./components/tasks/interview_11_grade/Task";
+import Interview11GradeExecution from "./components/tasks/interview_11_grade/Execution";
+import Interview11GradeResult from "./components/tasks/interview_11_grade/Result";
+
+import TextReading9GradeTask from "./components/tasks/text_reading_9_grade/Task";
+import TextReading9GradeExecution from "./components/tasks/text_reading_9_grade/Execution";
+import TextReading9GradeResult from "./components/tasks/text_reading_9_grade/Result";
+
+import TextReading11GradeTask from "./components/tasks/text_reading_11_grade/Task";
+import TextReading11GradeExecution from "./components/tasks/text_reading_11_grade/Execution";
+import TextReading11GradeResult from "./components/tasks/text_reading_11_grade/Result";
 
 import QuestionsTask from "./components/tasks/questions/Task";
 import QuestionsExecution from "./components/tasks/questions/Execution";
@@ -90,8 +98,10 @@ export default {
         Authorization,
         TasksForStudent,
         AllTasksForTeacher, StudentsForTeacher, StudentTasksForTeacher,
-        InterviewTask, InterviewExecution, InterviewResult,
-        TextReadingTask, TextReadingExecution, TextReadingResult,
+        Interview9GradeTask, Interview9GradeExecution, Interview9GradeResult,
+        Interview11GradeTask, Interview11GradeExecution, Interview11GradeResult,
+        TextReading9GradeTask, TextReading9GradeExecution, TextReading9GradeResult,
+        TextReading11GradeTask, TextReading11GradeExecution, TextReading11GradeResult,
         QuestionsTask, QuestionsExecution, QuestionsResult,
         PicturesComparisionTask, PicturesComparisionExecution, PicturesComparisionResult,
         Monologue9GradeTask, Monologue9GradeExecution, Monologue9GradeResult,

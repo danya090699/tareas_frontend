@@ -17,7 +17,12 @@
             <br><br>
             <ul>
                 <li>{{ templates.points[0] }}</li>
-                <li>{{ templates.points[1] }}</li>
+                <li>
+                    <span>{{ templates.points[1] }}</span>
+                    <div style="width: 300px; display: inline-block" class="mx-2">
+                        <v-text-field v-model="new_point3" dense hide-details/>
+                    </div>
+                </li>
                 <li>
                     <span>{{ templates.points[2] }}</span>
                     <div style="width: 300px; display: inline-block" class="mx-2">

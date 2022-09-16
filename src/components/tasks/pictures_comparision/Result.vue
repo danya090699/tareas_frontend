@@ -12,7 +12,7 @@
             <h3 class="mt-4">{{ templates.task.prefix }}{{ teacher_task.other_info.text }}{{ templates.task.suffix }}</h3>
             <ul class="my-3" style="font-size: 20px">
                 <li>{{ templates.points[0] }}</li>
-                <li>{{ templates.points[1] }}</li>
+                <li>{{ templates.points[1] }} {{ teacher_task.other_info.point3 }}</li>
                 <li>{{ templates.points[2] }} {{ teacher_task.other_info.point3 }}</li>
                 <li>{{ templates.points[3] }} {{ teacher_task.other_info.point4 }}</li>
             </ul>
