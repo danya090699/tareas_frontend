@@ -89,7 +89,7 @@ export default {
 
                     this.state = "recording";
                     this.currentTime = 0;
-                    this.duration = 90;
+                    this.duration = 120;
 
                     this.mediaRecorder = new MediaRecorder(this.stream);
                     this.mediaRecorder.addEventListener("dataavailable", event => {
